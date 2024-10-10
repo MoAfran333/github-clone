@@ -8,26 +8,29 @@ import {
   RiUserFollowFill,
   RiGitRepositoryFill,
 } from "react-icons/ri";
+import { formatMemberSince } from "../utils/dateFunction";
 
-const ProfileInfo = () => {
-  const userProfile = {
-    avatar_url:
-      "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745",
-    bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
-    email: "johndoe@gmail.com",
-    followers: 100,
-    following: 200,
-    html_url: "https://github.com/burakorkmez",
-    location: "Somewhere, Earth",
-    name: "John Doe",
-    public_gists: 100,
-    public_repos: 100,
-    twitter_username: "johndoe",
-    login: "johndoe",
-  };
+const ProfileInfo = ({ userProfile }) => {
+  // const userProfile = {
+  //   avatar_url:
+  //     "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745",
+  //   bio: "👨🏻‍💻👨🏻‍💻👨🏻‍💻",
+  //   email: "johndoe@gmail.com",
+  //   followers: 100,
+  //   following: 200,
+  //   html_url: "https://github.com/burakorkmez",
+  //   location: "Somewhere, Earth",
+  //   name: "John Doe",
+  //   public_gists: 100,
+  //   public_repos: 100,
+  //   twitter_username: "johndoe",
+  //   login: "johndoe",
+  // };
+
+  const memberSince = formatMemberSince(userProfile?.created_at);
 
   return (
-    <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
+    <div className="lg:w-1/3 w-full flex flex-col gap-2 lg:sticky md:top-10">
       <div className="bg-glass rounded-lg p-4">
         {/* User Avatar and Github Link */}
         <div className="flex gap-3 items-center">
@@ -83,7 +86,7 @@ const ProfileInfo = () => {
         {/* Member Since Date */}
         <div className="my-2">
           <p className="text-gray-600 font-bold text-sm">Member Since</p>
-          <p className="text-white">27 Aug, 2002</p>
+          <p className="text-white">{memberSince}</p>
         </div>
 
         {/* Email Address */}
@@ -104,7 +107,7 @@ const ProfileInfo = () => {
 
         {/* Username */}
         <div className="my-2">
-          <p className="text-gray-600 font-bold text-sm">Email Address</p>
+          <p className="text-gray-600 font-bold text-sm">Username</p>
           <p className="">{userProfile?.login}</p>
         </div>
       </div>

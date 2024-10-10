@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -11,6 +12,7 @@ import Sidebar from "./components/Sidebar.jsx";
 function App() {
   return (
     <>
+      <Toaster />
       <div className="flex">
         <Sidebar />
         <div className="max-w-5xl my-5 text-white mx-auto transition-all duration-300 flex-1">
