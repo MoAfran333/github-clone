@@ -18,16 +18,16 @@ const ExplorePage = () => {
     setRepos([]);
     try {
       const res = await fetch(
-        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,
-        {
-          headers: {
-            authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
-          },
-        }
+        `http://localhost:5000/api/explore/repos/${language}`
       );
-      const data = await res.json();
-      setRepos(data.items);
-      setSelectedLanguage(language);
+      const { items } = await res.json();
+      console.log("items : ", items);
+      setRepos(items);
+      if (language === "cpp") {
+        setSelectedLanguage("c++");
+      } else {
+        setSelectedLanguage(language);
+      }
     } catch (e) {
       toast.error(e.message);
     } finally {
@@ -73,7 +73,7 @@ const ExplorePage = () => {
             onClick={() => exploreRepos("java")}
           />
         </div>
-        {repos.length > 0 && (
+        {repos?.length > 0 && (
           <h2 className="text-lg font-semibold text-center my-2">
             <span className="bg-blue-100 text-blue-800 font-medium me-2 px-2.5 py-0.5 rounded-full">
               {selectedLanguage.toUpperCase()}
@@ -81,7 +81,7 @@ const ExplorePage = () => {
             Repositories
           </h2>
         )}
-        {!loading && repos.length > 0 && (
+        {!loading && repos?.length > 0 && (
           <Repos repos={repos} alwaysFullWidth />
         )}
         {loading && <Spinner />}
