@@ -9,6 +9,7 @@ import {
   RiGitRepositoryFill,
 } from "react-icons/ri";
 import { formatMemberSince } from "../utils/dateFunction";
+import LikeProfile from "./LikeProfile";
 
 const ProfileInfo = ({ userProfile }) => {
   // const userProfile = {
@@ -41,7 +42,8 @@ const ProfileInfo = ({ userProfile }) => {
               alt=""
             />
           </a>
-          <div className="flex gap-2 items-center flex-cols">
+          <div className="flex gap-2 items-center flex-col">
+            <LikeProfile userProfile={userProfile} />
             <a
               href={userProfile?.html_url}
               target="_blank"
